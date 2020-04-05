@@ -12,7 +12,7 @@ public class CustomerMessageAssembler {
 
     private final ModelMapper modelMapper;
 
-    public CustomerMessage toMessageObject(Customer customer) {
+    public CustomerMessage toMessageObject(final Customer customer) {
         return modelMapper.map(customer, CustomerMessage.class);
     }
 }

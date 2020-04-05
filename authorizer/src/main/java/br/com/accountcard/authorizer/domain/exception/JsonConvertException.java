@@ -2,7 +2,7 @@ package br.com.accountcard.authorizer.domain.exception;
 
 public class JsonConvertException extends RuntimeException {
 
-    public JsonConvertException(String msg) {
+    public JsonConvertException(final String msg) {
         super(msg);
     }
 }

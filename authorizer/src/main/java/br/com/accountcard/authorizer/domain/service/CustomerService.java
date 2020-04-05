@@ -18,14 +18,13 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMessageAssembler customerMessageAssembler;
 
-    public Optional<Customer> findByCPF(String cpf) {
+    public Optional<Customer> findByCPF(final String cpf) {
         return customerRepository.findByCpf(cpf);
     }
 
-    public void save(Customer customer) {
+    public void save(final Customer customer) {
         customer.setStatusProposal(StatusProposal.PENDING);
-        customer = customerRepository.save(customer);
-        producerMessaging.process(customerMessageAssembler.toMessageObject(customer));
+        producerMessaging.process(customerMessageAssembler.toMessageObject(customerRepository.save(customer)));
     }
 
 }

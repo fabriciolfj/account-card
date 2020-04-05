@@ -29,15 +29,15 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(JsonConvertException.class)
     public ResponseEntity<?> handleJsonConvertException(final JsonConvertException e, final WebRequest request) {
-        var status = HttpStatus.INTERNAL_SERVER_ERROR;
-        var standarError = createErrorBuilder(status, SERVER_ERROR, e.getMessage()).build();
+        final var status = HttpStatus.INTERNAL_SERVER_ERROR;
+        final var standarError = createErrorBuilder(status, SERVER_ERROR, e.getMessage()).build();
         return handleExceptionInternal(e, standarError, new HttpHeaders(), status, request);
     }
 
     @ExceptionHandler(CPFInvalidException.class)
     public ResponseEntity<?> handleCPFInvalid(final CPFInvalidException e, final WebRequest request) {
-        var status = HttpStatus.BAD_REQUEST;
-        var standarError = createErrorBuilder(status, TypeError.INVALID_DATA, e.getMessage()).build();
+        final var status = HttpStatus.BAD_REQUEST;
+        final var standarError = createErrorBuilder(status, TypeError.INVALID_DATA, e.getMessage()).build();
         return handleExceptionInternal(e, standarError, new HttpHeaders(), status, request);
     }
 

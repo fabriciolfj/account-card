@@ -4,8 +4,8 @@ import br.com.caelum.stella.validation.CPFValidator;
 
 public class ValidCPF {
 
-    public static boolean validateCpf(String cpf) {
-        CPFValidator validator = new CPFValidator();
+    public static boolean validateCpf(final String cpf) {
+        final CPFValidator validator = new CPFValidator();
         try {
             validator.assertValid(cpf);
             return true;

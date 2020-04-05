@@ -1,7 +1,6 @@
 package br.com.accountcard.authorizer.domain.facade.create;
 
 import br.com.accountcard.authorizer.api.assembler.CustomerDtoDesassembler;
-import br.com.accountcard.authorizer.api.assembler.CustomerMessageAssembler;
 import br.com.accountcard.authorizer.domain.exception.CPFInvalidException;
 import br.com.accountcard.authorizer.domain.service.CustomerService;
 import br.com.accountcard.domain.customer.Customer;
@@ -20,7 +19,7 @@ public class CustomerCreate {
     private final CustomerService customerService;
     private final CustomerDtoDesassembler customerDtoDesassembler;
 
-    public void process(CustomerDTO dto) {
+    public void process(final CustomerDTO dto) {
         Optional.of(dto)
                 .filter(customerDTO -> validateCpf(customerDTO.getCpf()))
                 .ifPresentOrElse(this::create,
@@ -35,7 +34,7 @@ public class CustomerCreate {
                     customerDtoDesassembler.copyToDomainObject(dto, customer);
                     save(customer);
                 }, () -> {
-                    var customer = customerDtoDesassembler.toDomainObject(dto);
+                    final var customer = customerDtoDesassembler.toDomainObject(dto);
                     save(customer);
                 });
     }

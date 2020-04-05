@@ -16,13 +16,13 @@ public class RegisterProducer {
 
     private final RegisterCustomer registerCustomer;
 
-    public void process(CustomerMessage customer) {
-        var json = getJson(customer);
-        var message = MessageBuild.message(json);
+    public void process(final CustomerMessage customer) {
+        final var json = getJson(customer);
+        final var message = MessageBuild.message(json);
         registerCustomer.output().send(message);
     }
 
-    private String getJson(CustomerMessage customer)  {
+    private String getJson(final CustomerMessage customer)  {
         try {
             return new ObjectMapper().writeValueAsString(customer);
         } catch (JsonProcessingException e) {

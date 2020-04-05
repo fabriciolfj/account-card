@@ -5,7 +5,7 @@ import org.springframework.messaging.support.MessageBuilder;
 
 public class MessageBuild {
 
-    public static final <T> Message<T> message(T val) {
+    public static final <T> Message<T> message(final T val) {
         return MessageBuilder.withPayload(val).build();
     }
 }
