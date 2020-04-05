@@ -1,5 +1,5 @@
 # Account card
-> Desenvolvido pro Fabricio Jacob
+> Desenvolvido por Fabricio Jacob
 
 ---
 ### Integrações
