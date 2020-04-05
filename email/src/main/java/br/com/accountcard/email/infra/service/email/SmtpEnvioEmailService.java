@@ -21,6 +21,7 @@ public class SmtpEnvioEmailService implements SendEmailService {
 
     @Override
     public void send(Message message) {
+        LOG.info("Send email: " + message.getRecipients());
         try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
