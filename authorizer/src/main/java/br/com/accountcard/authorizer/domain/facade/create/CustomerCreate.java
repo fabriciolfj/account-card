@@ -2,7 +2,7 @@ package br.com.accountcard.authorizer.domain.facade.create;
 
 import br.com.accountcard.authorizer.api.assembler.CustomerDtoDesassembler;
 import br.com.accountcard.authorizer.domain.exception.CPFInvalidException;
-import br.com.accountcard.authorizer.domain.service.CustomerService;
+import br.com.accountcard.authorizer.domain.service.AuthorizerService;
 import br.com.accountcard.domain.customer.Customer;
 import br.com.accountcard.domain.customer.CustomerDTO;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ import static br.com.accountcard.authorizer.infra.util.ValidCPF.validateCpf;
 @RequiredArgsConstructor
 public class CustomerCreate {
 
-    private final CustomerService customerService;
+    private final AuthorizerService customerService;
     private final CustomerDtoDesassembler customerDtoDesassembler;
 
     public void process(final CustomerDTO dto) {

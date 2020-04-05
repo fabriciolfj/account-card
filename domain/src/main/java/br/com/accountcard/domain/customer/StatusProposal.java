@@ -10,7 +10,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public enum StatusProposal {
 
-    PENDING("PENDING"),
     APPROVED("APPROVED"),
     DECLINE("DECLINE"),
     ANALYSE_DOC("ANALYSE_DOC"),

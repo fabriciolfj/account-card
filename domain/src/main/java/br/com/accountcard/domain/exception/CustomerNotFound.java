@@ -1,4 +1,4 @@
-package br.com.accountcard.email.domain.exception;
+package br.com.accountcard.domain.exception;
 
 public class CustomerNotFound extends RuntimeException {
 

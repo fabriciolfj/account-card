@@ -1,10 +1,11 @@
 package br.com.accountcard.email.domain.messaging.notify;
 
 import br.com.accountcard.domain.customer.StatusProposal;
+import br.com.accountcard.domain.service.CustomerService;
 import br.com.accountcard.email.domain.dto.CustomerDTO;
 import br.com.accountcard.email.domain.exception.ProposalTypeNotFound;
+import br.com.accountcard.email.domain.facade.change.CustomerChange;
 import br.com.accountcard.email.domain.facade.create.CreateMessageMail;
-import br.com.accountcard.email.domain.service.CustomerService;
 import br.com.accountcard.email.domain.service.SendEmailService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -24,7 +25,7 @@ import static br.com.accountcard.domain.customer.StatusProposal.APPROVED;
 public class ConsumerNotifyMail {
 
     private final CreateMessageMail createMessageMail;
-    private final CustomerService customerService;
+    private final CustomerChange customerChange;
     private final SendEmailService mail;
     private final static Logger LOG = LoggerFactory.getLogger(ConsumerNotifyMail.class);
 
@@ -40,23 +41,24 @@ public class ConsumerNotifyMail {
             case ANALYSE_DOC:
                 LOG.info("Proposal in analyse doc. CPF: " + customerDto.getCpf());
                 mail.send(createMessageMail.create(customerDto.getEmail(), "Proposal doc in analyse"));
-                customerService.update(customerDto.getCpf(), ANALYSE_DOC);
                 break;
             case ANALYSE_FRAUD:
                 LOG.info("Proposal in analyse fraud. CPF: " + customerDto.getCpf());
                 mail.send(createMessageMail.create(customerDto.getEmail(), "Proposal fraud in analyse"));
-                customerService.update(customerDto.getCpf(), ANALYSE_FRAUD);
                 break;
             case ANALYSE_CREDIT:
                 LOG.info("Proposal in analyse credit. CPF: " + customerDto.getCpf());
                 mail.send(createMessageMail.create(customerDto.getEmail(), "Proposal credit in analyse"));
-                customerService.update(customerDto.getCpf(), ANALYSE_CREDIT);
                 break;
             case APPROVED:
-                LOG.info("Proposal approved credit. CPF: " + customerDto.getCpf());
+                LOG.info("Proposal approved. CPF: " + customerDto.getCpf());
                 mail.send(createMessageMail.create(customerDto.getEmail(), "Proposal approved"));
-                customerService.update(customerDto.getCpf(), APPROVED);
+                customerChange.updateProposal(customerDto);
                 break;
+            case DECLINE:
+                LOG.info("Proposal decline. CPF: " + customerDto.getCpf());
+                mail.send(createMessageMail.create(customerDto.getEmail(), "His proposal was rejected"));
+                customerChange.updateProposal(customerDto);
         }
     }
 }

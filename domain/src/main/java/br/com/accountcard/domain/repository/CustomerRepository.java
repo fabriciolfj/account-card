@@ -1,4 +1,4 @@
-package br.com.accountcard.email.domain.repository;
+package br.com.accountcard.domain.repository;
 
 import br.com.accountcard.domain.customer.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;

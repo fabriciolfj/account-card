@@ -22,7 +22,7 @@ public class SmtpEnvioEmailService implements SendEmailService {
     @Override
     public void send(Message message) {
         LOG.info("Send email: " + message.getRecipients());
-        try {
+        /*try {
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "UTF-8");
             helper.setFrom(emailProperties.getRemetente());
@@ -33,6 +33,6 @@ public class SmtpEnvioEmailService implements SendEmailService {
             mailSender.send(mimeMessage);
         } catch (Exception e) {
             throw new EmailException("Não foi possível enviar e-mail", e);
-        }
+        }*/
     }
 }

@@ -1,7 +1,6 @@
 package br.com.accountcard.credit.domain.service;
 
 import br.com.accountcard.credit.domain.dto.CustomerDto;
-import br.com.accountcard.credit.domain.messaging.decline.ProducerDeclineDocuments;
 import br.com.accountcard.credit.domain.messaging.notify.ProducerNotifyMail;
 import br.com.accountcard.domain.customer.StatusProposal;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +14,11 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class AnalyseCreditService {
 
-    private final ProducerDeclineDocuments producerDeclineDocuments;
     private final ProducerNotifyMail producerNotifyMail;
     private static final Logger LOG = LoggerFactory.getLogger(AnalyseCreditService.class);
 
     public void process(final CustomerDto customerDto) {
         LOG.info("Starting credit analysis process");
-        customerDto.setStatusProposal(StatusProposal.ANALYSE_FRAUD.toString());
         sendNotify(customerDto);
         evaluateData(customerDto);
     }
@@ -44,7 +41,8 @@ public class AnalyseCreditService {
 
     private void decline(final CustomerDto customerDto) {
         LOG.info("Decline proposal. CPF "  + customerDto.getCpf());
-        producerDeclineDocuments.process(customerDto);
+        customerDto.setStatusProposal(StatusProposal.DECLINE.toString());
+        producerNotifyMail.process(customerDto);
     }
 
 }

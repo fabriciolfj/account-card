@@ -1,7 +1,7 @@
 package br.com.accountcard.documents.domain.service;
 
 import br.com.accountcard.documents.domain.dto.CustomerDto;
-import br.com.accountcard.documents.domain.messaging.decline.ProducerDeclineDocuments;
+import br.com.accountcard.documents.domain.facade.change.CustomerChange;
 import br.com.accountcard.documents.domain.messaging.fraud.ProducerAnalyzeFraud;
 import br.com.accountcard.documents.domain.messaging.notify.ProducerNotifyMail;
 import br.com.accountcard.domain.customer.StatusProposal;
@@ -16,14 +16,13 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class AnalyseDocumentsService {
 
-    private final ProducerDeclineDocuments producerDeclineDocuments;
+    private final CustomerChange customerChange;
     private final ProducerNotifyMail producerNotifyMail;
     private final ProducerAnalyzeFraud producerAnalyzeFraud;
     private static final Logger LOG = LoggerFactory.getLogger(AnalyseDocumentsService.class);
 
     public void process(final CustomerDto customerDto) {
         LOG.info("Starting document analysis process. CPF: " + customerDto.getCpf());
-        customerDto.setStatusProposal(StatusProposal.ANALYSE_DOC.toString());
         sendNotify(customerDto);
         evaluateData(customerDto);
     }
@@ -36,8 +35,8 @@ public class AnalyseDocumentsService {
         var random = new Random().nextInt();
         if(random %2 == 0){
             customerDto.setStatusProposal(StatusProposal.ANALYSE_FRAUD.toString());
+            customerChange.updateProposal(customerDto);
             sendProcessFraudAnalyse(customerDto);
-            sendNotify(customerDto);
             return;
         }
 
@@ -51,7 +50,8 @@ public class AnalyseDocumentsService {
 
     private void decline(final CustomerDto customerDto) {
         LOG.info("Decline proposal. CPF "  + customerDto.getCpf());
-        producerDeclineDocuments.process(customerDto);
+        customerDto.setStatusProposal(StatusProposal.DECLINE.toString());
+        producerNotifyMail.process(customerDto);
     }
 
 }

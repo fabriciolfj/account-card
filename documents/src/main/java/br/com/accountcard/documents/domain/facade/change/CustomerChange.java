@@ -1,8 +1,8 @@
-package br.com.accountcard.email.domain.facade.change;
+package br.com.accountcard.documents.domain.facade.change;
 
+import br.com.accountcard.documents.domain.dto.CustomerDto;
 import br.com.accountcard.domain.customer.StatusProposal;
 import br.com.accountcard.domain.service.CustomerService;
-import br.com.accountcard.email.domain.dto.CustomerDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,9 @@ public class CustomerChange {
 
     private final CustomerService customerService;
 
-    public void updateProposal(final CustomerDTO customerDTO) {
-        customerService.update(customerDTO.getCpf(), StatusProposal.valueOf(customerDTO.getStatusProposal()));
+    public void updateProposal(final CustomerDto customerDto) {
+        customerService.update(customerDto.getCpf(), StatusProposal.valueOf(customerDto.getStatusProposal()));
     }
+
+
 }
