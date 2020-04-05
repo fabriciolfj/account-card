@@ -11,8 +11,9 @@ import java.util.Optional;
 public enum StatusProposal {
 
     PENDING("PENDING"),
-    ANALYSE("ANALYSE"),
-    ANALYSE_FAUDE("ANALYSE_FAUDE"),
+    DECLINE("DECLINE"),
+    ANALYSE_DOC("ANALYSE_DOC"),
+    ANALYSE_FRAUD("ANALYSE_FRAUD"),
     ANALYSE_CREDIT("ANALYSE_CREDIT");
 
     private final String value;

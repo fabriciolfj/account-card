@@ -6,6 +6,7 @@ import lombok.Getter;
 public enum TypeError {
 
     INVALID_DATA("Invalid data"),
+    SERVER_ERROR("Server error"),
     PARAMETER_INVALID("Invalid parameter");
 
     private String describe;

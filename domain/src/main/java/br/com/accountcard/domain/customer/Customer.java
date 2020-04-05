@@ -3,6 +3,7 @@ package br.com.accountcard.domain.customer;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,6 +26,7 @@ public class Customer {
     private String email;
     private String cpf;
     @Enumerated(EnumType.STRING)
+    @Column(name = "status_proposal")
     private StatusProposal statusProposal;
 
 }
