@@ -32,3 +32,20 @@ Em cada projeto existe um arquivo Dockerfile, que pode ser criado para gerar ima
 ### Documentação
 
 A documentação básica dos endpotins encontram-se ```http://server/swagger-ui.html```
+
+### Banco de dados
+- [Mysql]
+```
+docker run -p 3306:3306 --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql
+```
+
+### Tecnologias utilizadas
+- [Sring boot]
+- [Spring cloud config server]
+- [Spring cloud stream]
+- [Eureka server]
+- [Spring data]
+- [Java 11]
+- [Model mapper]
+- [Spring oauth2]
+- [Arquitetura em microservices]
