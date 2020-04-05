@@ -1,6 +1,6 @@
-package br.com.accountcard.documents.domain.messaging.decline;
+package br.com.accountcard.credit.domain.messaging.notify;
 
-import br.com.accountcard.documents.domain.dto.CustomerDto;
+import br.com.accountcard.credit.domain.dto.CustomerDto;
 import br.com.accountcard.domain.util.JsonUtil;
 import br.com.accountcard.domain.util.MessageBuild;
 import lombok.RequiredArgsConstructor;
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-@EnableBinding(DeclinedDocuments.class)
-public class ProducerDeclineDocuments {
+@EnableBinding(NotifyMail.class)
+public class ProducerNotifyMail {
 
-    private final DeclinedDocuments declinedDocuments;
+    private final NotifyMail notifyMail;
 
     public void process(final CustomerDto customerDto) {
         var json = JsonUtil.getJson(customerDto);
         var message = MessageBuild.message(json);
-        declinedDocuments.output().send(message);
+        notifyMail.output().send(message);
     }
 }

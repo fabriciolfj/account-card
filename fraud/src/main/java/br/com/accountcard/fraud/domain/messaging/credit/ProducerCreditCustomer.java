@@ -1,22 +1,22 @@
-package br.com.accountcard.documents.domain.messaging.decline;
+package br.com.accountcard.fraud.domain.messaging.credit;
 
-import br.com.accountcard.documents.domain.dto.CustomerDto;
 import br.com.accountcard.domain.util.JsonUtil;
 import br.com.accountcard.domain.util.MessageBuild;
+import br.com.accountcard.fraud.domain.dto.CustomerDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-@EnableBinding(DeclinedDocuments.class)
-public class ProducerDeclineDocuments {
+@EnableBinding(CreditCustomer.class)
+public class ProducerCreditCustomer {
 
-    private final DeclinedDocuments declinedDocuments;
+    private final CreditCustomer creditCustomer;
 
     public void process(final CustomerDto customerDto) {
         var json = JsonUtil.getJson(customerDto);
         var message = MessageBuild.message(json);
-        declinedDocuments.output().send(message);
+        creditCustomer.output().send(message);
     }
 }

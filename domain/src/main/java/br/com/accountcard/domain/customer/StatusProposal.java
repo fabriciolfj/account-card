@@ -11,6 +11,7 @@ import java.util.Optional;
 public enum StatusProposal {
 
     PENDING("PENDING"),
+    APPROVED("APPROVED"),
     DECLINE("DECLINE"),
     ANALYSE_DOC("ANALYSE_DOC"),
     ANALYSE_FRAUD("ANALYSE_FRAUD"),

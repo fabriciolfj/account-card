@@ -1,6 +1,6 @@
-package br.com.accountcard.documents.util;
+package br.com.accountcard.domain.util;
 
-import br.com.accountcard.documents.domain.exception.JsonConvertException;
+import br.com.accountcard.domain.exception.JsonConvertException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 

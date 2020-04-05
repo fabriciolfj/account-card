@@ -1,4 +1,4 @@
-package br.com.accountcard.documents.util;
+package br.com.accountcard.domain.util;
 
 import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;

@@ -22,7 +22,7 @@ public class AnalyseDocumentsService {
     private static final Logger LOG = LoggerFactory.getLogger(AnalyseDocumentsService.class);
 
     public void process(final CustomerDto customerDto) {
-        LOG.info("Starting document analysis process.");
+        LOG.info("Starting document analysis process. CPF: " + customerDto.getCpf());
         customerDto.setStatusProposal(StatusProposal.ANALYSE_DOC.toString());
         sendNotify(customerDto);
         evaluateData(customerDto);
@@ -45,10 +45,12 @@ public class AnalyseDocumentsService {
     }
 
     private void sendProcessFraudAnalyse(CustomerDto customerDto) {
+        LOG.info("Starting fraud proposal. CPF "  + customerDto.getCpf());
         producerAnalyzeFraud.process(customerDto);
     }
 
     private void decline(final CustomerDto customerDto) {
+        LOG.info("Decline proposal. CPF "  + customerDto.getCpf());
         producerDeclineDocuments.process(customerDto);
     }
 

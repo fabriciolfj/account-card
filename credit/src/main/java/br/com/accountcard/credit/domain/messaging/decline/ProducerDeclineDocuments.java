@@ -1,6 +1,7 @@
-package br.com.accountcard.documents.domain.messaging.decline;
+package br.com.accountcard.credit.domain.messaging.decline;
 
-import br.com.accountcard.documents.domain.dto.CustomerDto;
+
+import br.com.accountcard.credit.domain.dto.CustomerDto;
 import br.com.accountcard.domain.util.JsonUtil;
 import br.com.accountcard.domain.util.MessageBuild;
 import lombok.RequiredArgsConstructor;

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import static br.com.accountcard.domain.customer.StatusProposal.ANALYSE_CREDIT;
 import static br.com.accountcard.domain.customer.StatusProposal.ANALYSE_DOC;
 import static br.com.accountcard.domain.customer.StatusProposal.ANALYSE_FRAUD;
+import static br.com.accountcard.domain.customer.StatusProposal.APPROVED;
 
 @EnableBinding(NotifyMail.class)
 @Component
@@ -50,6 +51,11 @@ public class ConsumerNotifyMail {
                 LOG.info("Proposal in analyse credit. CPF: " + customerDto.getCpf());
                 mail.send(createMessageMail.create(customerDto.getEmail(), "Proposal credit in analyse"));
                 customerService.update(customerDto.getCpf(), ANALYSE_CREDIT);
+                break;
+            case APPROVED:
+                LOG.info("Proposal approved credit. CPF: " + customerDto.getCpf());
+                mail.send(createMessageMail.create(customerDto.getEmail(), "Proposal approved"));
+                customerService.update(customerDto.getCpf(), APPROVED);
                 break;
         }
     }

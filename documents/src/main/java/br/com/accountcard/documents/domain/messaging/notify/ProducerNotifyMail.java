@@ -1,8 +1,8 @@
 package br.com.accountcard.documents.domain.messaging.notify;
 
 import br.com.accountcard.documents.domain.dto.CustomerDto;
-import br.com.accountcard.documents.util.JsonUtil;
-import br.com.accountcard.documents.util.MessageBuild;
+import br.com.accountcard.domain.util.JsonUtil;
+import br.com.accountcard.domain.util.MessageBuild;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.stereotype.Component;

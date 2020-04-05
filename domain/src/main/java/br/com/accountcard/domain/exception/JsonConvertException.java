@@ -1,4 +1,4 @@
-package br.com.accountcard.documents.domain.exception;
+package br.com.accountcard.domain.exception;
 
 public class JsonConvertException extends RuntimeException {
 
